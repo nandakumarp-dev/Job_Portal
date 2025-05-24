@@ -33,3 +33,9 @@ class PostJobView(View):
     def get(self,request,*args,**kwargs):
 
         return render(request,'home/post_a_job.html')
+    
+class TestView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        return render(request,'home/test.html')
