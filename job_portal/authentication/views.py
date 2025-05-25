@@ -35,12 +35,11 @@ class LoginView(View):
             return render(request, 'authentication/login.html')
         
 
-
-class RegisterUserView(View):
+class EmployerRegistrationView(View):
 
     def get(self,request,*args,**kwargs):
 
-        return render(request,'authentication/register_user.html')
+        return render(request,'authentication/register_employer.html')
     
     def post(self,request,*args,**kwargs):
 
@@ -73,3 +72,10 @@ class RegisterUserView(View):
         return redirect('login_page')
     
 
+
+
+class EmployeeRegistrationView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        return render(request,'authentication/register_employee.html')

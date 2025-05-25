@@ -39,3 +39,14 @@ class TestView(View):
     def get(self,request,*args,**kwargs):
 
         return render(request,'home/test.html')
+    
+
+class UserSelectionView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        return render(request,'authentication/user_selection.html')
+    
+
+
+
