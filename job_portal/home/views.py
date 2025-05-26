@@ -46,7 +46,4 @@ class UserSelectionView(View):
     def get(self,request,*args,**kwargs):
 
         return render(request,'authentication/user_selection.html')
-    
-
-
 

@@ -97,8 +97,10 @@
         {% csrf_token %}
 
         <div class="mb-3">
-          <label for="username" class="form-label">Email</label>
-          <input type="text" id="username" name="username" class="form-control" required autocomplete="username" />
+          {% comment %} <label for="username" class="form-label">Email</label> {% endcomment %}
+          <label for="username" class="form-label">Username</label>
+          
+          <input type="text" id="username" name="username" class="form-control" required autofocus />
         </div>
 
         <div class="mb-4">
@@ -106,20 +108,28 @@
           <input type="password" id="password" name="password" class="form-control" required autocomplete="current-password" />
         </div>
 
-        <button type="submit" class="btn btn-custom w-100 mb-3" href="{% url 'login_page' %}">Log In</button>
+        {% comment %} <button type="submit" class="btn btn-custom w-100 mb-3" href="{% url 'login_page' %}">Log In</button> {% endcomment %}
+        <button type="submit" class="btn btn-custom w-100 mb-3">Log In</button>
       </form>
 
-      {% if messages %}
+      {% comment %} {% if messages %}
         <ul class="mt-3 text-danger">
           {% for message in messages %}
             <li>{{ message }}</li>
           {% endfor %}
         </ul>
+      {% endif %} {% endcomment %}
+
+      {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger mt-3" role="alert">{{ message }}</div>
+      {% endfor %}
       {% endif %}
 
       <p class="text-center mt-4">
         Don't have an account?
-        <a href="{% url 'register_user_page' %}" class="text-primary fw-semibold">Sign up</a>
+        {% comment %} <a href="{% url 'register_user_page' %}" class="text-primary fw-semibold">Sign up</a> {% endcomment %}
+        <a href="{% url 'user_selection_page' %}" class="text-primary fw-semibold">Sign up</a>
       </p>
 
       <div class="text-center mt-3">
