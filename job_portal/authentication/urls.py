@@ -7,8 +7,5 @@ urlpatterns = [
     path('employee_registration/', views.EmployeeRegistrationView.as_view(), name='employee_registration_page'),
     path('dashboard/employer/', views.EmployerDashboardView.as_view(), name='employer_dashboard'),
     path('dashboard/employee/', views.EmployeeDashboardView.as_view(), name='jobseeker_dashboard'),
-    # path('user_selection/', views.UserSelectionView.as_view(), name='user_selection'),
-    path('dashboard/employer/', views.EmployerDashboardView.as_view(), name='employer_dashboard'),
-    path('dashboard/jobseeker/', views.EmployeeDashboardView.as_view(), name='jobseeker_dashboard'),
 
 ]

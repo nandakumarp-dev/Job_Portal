@@ -34,7 +34,7 @@ class JobSeekerProfile(models.Model):
 
     custom_user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
-    resume = models.FileField(upload_to='resume/')
+    # resume = models.FileField(upload_to='resume/', blank=True, null=True)
     phone = models.CharField(max_length=20)
     location = models.CharField(max_length=100)
 

@@ -115,7 +115,7 @@ class EmployeeRegistrationView(View):
             user.set_password(user_form.cleaned_data['password'])
             user.save()
 
-            custom_user = CustomUser.objects.create(user=user, role='jobseeker')
+            custom_user = CustomUser.objects.create(user=user, role='job_seeker')
 
             profile = profile_form.save(commit=False)
             profile.custom_user = custom_user
