@@ -6,7 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 from .forms import UserRegistrationForm, EmployerProfileForm, JobSeekerProfileForm
-from .models import CustomUser, EmployerProfile
+from .models import CustomUser
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 # Create your views here.
 
@@ -24,6 +28,8 @@ class LoginView(View):
         user = authenticate(request,username=username,password=password)
 
         if user is not None:
+
+            login(request, user)
 
             try:
                 custom_user = CustomUser.objects.get(user=user)
@@ -123,14 +129,8 @@ class EmployeeRegistrationView(View):
             'user_form': user_form,
             'profile_form' : profile_form
         })
-    
 
 
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.views import View
-from django.shortcuts import render, redirect
-from .models import CustomUser
 
 @method_decorator(login_required, name='dispatch')
 class EmployerDashboardView(View):
@@ -143,6 +143,8 @@ class EmployerDashboardView(View):
             return redirect('login_page')
 
         return render(request, 'authentication/employer_dashboard.html')
+
+
 
 @method_decorator(login_required, name='dispatch')
 class EmployeeDashboardView(View):
