@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login , logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 
@@ -46,7 +46,13 @@ class LoginView(View):
         return render(request, 'authentication/login.html')
         
 
-        
+class LogoutView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        logout(request)
+
+        return redirect('home_page')       
 
 class EmployerRegistrationView(View):
 
@@ -129,30 +135,3 @@ class EmployeeRegistrationView(View):
             'user_form': user_form,
             'profile_form' : profile_form
         })
-
-
-
-@method_decorator(login_required, name='dispatch')
-class EmployerDashboardView(View):
-    def get(self, request):
-        # Optional: ensure this user is an employer
-        try:
-            if request.user.customuser.role != 'employer':
-                return redirect('login_page')
-        except CustomUser.DoesNotExist:
-            return redirect('login_page')
-
-        return render(request, 'authentication/employer_dashboard.html')
-
-
-
-@method_decorator(login_required, name='dispatch')
-class EmployeeDashboardView(View):
-    def get(self, request):
-        try:
-            if request.user.customuser.role != 'job_seeker':
-                return redirect('login_page')
-        except CustomUser.DoesNotExist:
-            return redirect('login_page')
-
-        return render(request, 'authentication/jobseeker_dashboard.html')
