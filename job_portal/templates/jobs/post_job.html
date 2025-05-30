@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Post a Job</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #fff;
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-container {
+      background-color: #fff;
+      color: #000;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      max-width: 700px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .btn-custom {
+      background-color: #FB246A;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+
+    .btn-custom:hover {
+      background-color: #e61b5e;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    footer {
+      background-color: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .errorlist {
+      color: red;
+      padding-left: 0;
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="d-flex align-items-center justify-content-center flex-grow-1 py-5">
+    <div class="form-container">
+      <h2 class="text-center fw-bold mb-4">Post a New Job</h2>
+
+      <form method="POST" action="">
+        {% csrf_token %}
+
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Job Title</label>
+          <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="company_name" class="form-label">Company Name</label>
+          <input type="text" id="company_name" name="company_name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="company_website" class="form-label">Company Website</label>
+          <input type="url" id="company_website" name="company_website" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label for="company_email" class="form-label">Company Email</label>
+          <input type="email" id="company_email" name="company_email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label">Job Location</label>
+          <input type="text" id="location" name="location" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="salary_min" class="form-label">Min Salary</label>
+          <input type="number" id="salary_min" name="salary_min" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label for="salary_max" class="form-label">Max Salary</label>
+          <input type="number" id="salary_max" name="salary_max" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label for="yearly_salary" class="form-label">Yearly Salary (Optional)</label>
+          <input type="number" id="yearly_salary" name="yearly_salary" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label for="job_type" class="form-label">Job Type</label>
+          <select id="job_type" name="job_type" class="form-select" required>
+            <option value="">Select</option>
+            <option value="full_time">Full time</option>
+            <option value="part_time">Part time</option>
+            <option value="contract">Contract</option>
+            <option value="internship">Internship</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="vacancies" class="form-label">Number of Vacancies</label>
+          <input type="number" id="vacancies" name="vacancies" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Job Description</label>
+          <textarea id="description" name="description" rows="5" class="form-control" required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="required_skills" class="form-label">Required Skills</label>
+          <textarea id="required_skills" name="required_skills" rows="3" class="form-control" placeholder="e.g. Python, Django, REST APIs..." required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="education_experience" class="form-label">Education & Experience</label>
+          <textarea id="education_experience" name="education_experience" rows="3" class="form-control" placeholder="e.g. 3+ years in web development" required></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="application_deadline" class="form-label">Application Deadline</label>
+          <input type="date" id="application_deadline" name="application_deadline" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-custom w-100">Submit Job</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 YourJobPortal. All Rights Reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
