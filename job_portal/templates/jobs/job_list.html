@@ -34,6 +34,7 @@
                                     </div>
                                 </div>
                                 <!-- Count of Job list End -->
+                                 {% for job in jobs %}
                                 <!-- single-job-content -->
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
@@ -42,21 +43,21 @@
                                         </div>
                                         <div class="job-tittle job-tittle2">
                                             <a href="{% url 'job_details_page' %}">
-                                                <h4>Digital Marketer</h4>
+                                                <h4>{{job.title}}</h4>
                                             </a>
                                             <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
+                                                <li>{{job.company_name}}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
+                                                <li>{{job.salary_min}} - {{job.salary_max}}</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
+                                        <a href="job_details.html">{{job.job_type}}</a>
+                                        <span>{{job.posted_date}}</span>
                                     </div>
                                 </div>
-                                
+{% endfor %}                                
         <!-- Job List Area End -->
 
 {% endblock %}

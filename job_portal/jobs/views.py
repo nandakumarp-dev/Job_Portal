@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.views import View
 from .forms import JobPostForm
 
+from .models import JobPost
+
 # Create your views here.
 
 
@@ -34,7 +36,7 @@ class PostJobView(View):
         form = JobPostForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('job_list')  # replace with your success URL
+            return redirect('job_list_page')  # replace with your success URL
         
         print("FORM ERRORS:")
         for field, errors in form.errors.items():
@@ -46,4 +48,8 @@ class JobListView(View):
 
     def get(self, request,*args,**kwargs):
 
-        return render(request,'jobs/job_list.html')
+        jobs = JobPost.objects.all()
+
+        data = {'jobs':jobs}
+
+        return render(request,'jobs/job_list.html',context=data)
