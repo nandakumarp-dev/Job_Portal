@@ -27,18 +27,6 @@ class ContactView(View):
 
         return render(request,'home/contact.html')
     
-class FindJobView(View):
-
-    def get(self,request,*args,**kwargs):
-
-        return render(request,'home/find_a_job.html')
-    
-class PostJobView(View):
-
-    def get(self,request,*args,**kwargs):
-
-        return render(request,'home/post_a_job.html')
-    
 
 class UserSelectionView(View):
 
@@ -75,4 +63,4 @@ class FindJobView(View):
 
     def get(self,request,*args,**kwargs):
 
-        return render(request,'home/findjob.html')
+        return render(request,'job/job_list.html')

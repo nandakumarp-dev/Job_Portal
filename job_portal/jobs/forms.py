@@ -1,9 +1,9 @@
 from django import forms
-from .models import JobPost
+from .models import Job
 
 class JobPostForm(forms.ModelForm):
     class Meta:
-        model = JobPost
+        model = Job
         fields = [
             'title', 'company_name', 'company_website', 'company_email',
             'location', 'salary_min', 'salary_max', 'yearly_salary',

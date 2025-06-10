@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from .forms import JobPostForm
+from django.shortcuts import get_object_or_404
 
-from .models import JobPost
+from .models import Job
 
 # Create your views here.
 
@@ -11,20 +12,24 @@ class FindJobView(View):
 
     def get(request,*args,**kwargs):
 
-        return render()
+        jobs = Job.objects.all()
+
+        data = {'jobs':jobs}
+
+        return render(request,'jobs/job_list.html',context=data)
+    
     
 class JobDetailsView(View):
 
     def get(request,*args,**kwargs):
 
-        return render(request,'jobs/job_details.html')
-    
+        uuid = kwargs.get('uuid')
 
-class JobListView(View):
+        job = get_object_or_404(Job, uuid=uuid)
 
-    def get(request,*args,**kwargs):
+        data = {'job':job}
 
-        return render(request,'jobs/job_list.html')
+        return render(request,'jobs/job_details.html',context=data)
     
 
 class PostJobView(View):
@@ -48,7 +53,7 @@ class JobListView(View):
 
     def get(self, request,*args,**kwargs):
 
-        jobs = JobPost.objects.all()
+        jobs = Job.objects.all()
 
         data = {'jobs':jobs}
 

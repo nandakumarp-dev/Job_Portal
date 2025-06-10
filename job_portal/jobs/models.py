@@ -1,8 +1,25 @@
 from django.db import models
 
+import uuid
+
 # Create your models here.
 
-class JobPost(models.Model):
+
+class BaseModelClass(models.Model):
+
+    uuid = models.SlugField(unique=True,default=uuid.uuid4)
+
+    active_status = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+
+        abstract = True
+
+class Job(BaseModelClass):
     JOB_TYPES = [
         ('full_time', 'Full time'),
         ('part_time', 'Part time'),
