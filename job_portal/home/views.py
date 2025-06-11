@@ -8,33 +8,7 @@ from django.utils.decorators import method_decorator
 from authentication.models import CustomUser
 
 # Create your views here.
-
-class HomeView(View):
-
-    def get(self,request,*args,**kwargs):
-
-        return render(request,'home/home.html')
-
-class AboutView(View):
-
-    def get(self,request,*args,**kwargs):
-
-        return render(request,'home/about.html')
     
-class ContactView(View):
-
-    def get(self,request,*args,**kwargs):
-
-        return render(request,'home/contact.html')
-    
-
-class UserSelectionView(View):
-
-    def get(self,request,*args,**kwargs):
-
-        return render(request,'authentication/user_selection.html')
-    
-
 @method_decorator(login_required, name='dispatch')
 class EmployerDashboardView(View):
     def get(self, request):
