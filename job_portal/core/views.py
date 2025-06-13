@@ -21,8 +21,4 @@ class AboutView(View):
 
         return render(request,'core/about_page.html')
     
-class UserSelectionView(View):
 
-    def get(self,request,*args,**kwargs):
-
-        return render(request,'core/user_selection.html')

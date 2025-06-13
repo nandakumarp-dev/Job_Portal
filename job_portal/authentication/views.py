@@ -1,16 +1,9 @@
 from django.shortcuts import render,redirect
 from django.views import View
-
 from django.contrib.auth import authenticate, login , logout
 from django.contrib import messages
-from django.contrib.auth.models import User
-
 from .forms import UserRegistrationForm, EmployerProfileForm, JobSeekerProfileForm
 from .models import CustomUser
-
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-
 
 # Create your views here.
 
@@ -24,13 +17,10 @@ class LoginView(View):
 
         username = request.POST.get('username')
         password = request.POST.get('password')
-
         user = authenticate(request,username=username,password=password)
 
         if user is not None:
-
             login(request, user)
-
             try:
                 custom_user = CustomUser.objects.get(user=user)
                 if custom_user.role == 'employer':
@@ -39,10 +29,9 @@ class LoginView(View):
                     return redirect('jobseeker_dashboard')
             except CustomUser.DoesNotExist:
                 pass
-
             return redirect('home_page')
-        
         messages.error(request, "Invalid username or password")
+        
         return render(request, 'authentication/login.html')
         
 
@@ -52,7 +41,15 @@ class LogoutView(View):
 
         logout(request)
 
-        return redirect('home_page')       
+        return redirect('landing_page') 
+
+
+class UserSelectionView(View):
+
+    def get(self,request,*args,**kwargs):
+
+        return render(request,'authentication/user_selection.html')
+         
 
 class EmployerRegistrationView(View):
 
