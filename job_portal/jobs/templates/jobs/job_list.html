@@ -1,0 +1,89 @@
+{% extends "employees/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!-- Search Box -->
+                    <div class="container pt-50 pb-50">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <!-- form -->
+                                <form action="#" class="search-box">
+                                    <div class="input-form">
+                                        <input type="text" placeholder="Job Tittle or keyword">
+                                    </div>
+                                    <div class="select-form">
+                                        <div class="select-itms">
+                                            <select name="select" id="select1">
+                                                <option value="">Location BD</option>
+                                                <option value="">Location PK</option>
+                                                <option value="">Location US</option>
+                                                <option value="">Location UK</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="search-form">
+                                        <a href="#">Find job</a>
+                                    </div>	
+                                </form>	
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Job List Area Start -->
+<div class="job-listing-area pt-50 pb-50">
+            <div class="container">
+                <div class="row">
+                    
+                    <!-- Right content -->
+                    <div class="col-xl-12 col-lg-12 col-md-8">
+                        <!-- Featured_job_start -->
+                        <section class="featured-job-area">
+                            <div class="container">
+                                <!-- Count of Job list Start -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="count-job mb-35">
+                                            <span>39, 782 Jobs found</span>
+                                            <!-- Select job items start -->
+                                            <div class="select-job-items">
+                                                <span>Sort by</span>
+                                                <select name="select">
+                                                    <option value="">None</option>
+                                                    <option value="">job list</option>
+                                                    <option value="">job list</option>
+                                                    <option value="">job list</option>
+                                                </select>
+                                            </div>
+                                            <!--  Select job items End-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Count of Job list End -->
+                                 {% for job in jobs %}
+                                <!-- single-job-content -->
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                            <a href="#"><img src="{% static '/img/icon/job-list1.png' %}" alt=""></a>
+                                        </div>
+                                        <div class="job-tittle job-tittle2">
+                                            <a href="{% url 'job_details_page' job.uuid %}">
+                                                <h4>{{job.title}}</h4>
+                                            </a>
+                                            <ul>
+                                                <li>{{job.company_name}}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>{{job.location}}</li>
+                                                <li>{{job.salary_min}} - {{job.salary_max}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items-link items-link2 f-right">
+                                        <a href="job_details.html">{{job.job_type}}</a>
+                                        <span>{{job.posted_date}}</span>
+                                    </div>
+                                </div>
+{% endfor %}                                
+        <!-- Job List Area End -->
+
+{% endblock %}

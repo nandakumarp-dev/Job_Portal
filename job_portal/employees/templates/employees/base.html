@@ -36,7 +36,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="{% url 'jobseeker_dashboard' %}"><img src="{% static '/img/logo/logo.png' %}" alt=""></a>
+                                <a href="{% url 'employee_dashboard' %}"><img src="{% static '/img/logo/logo.png' %}" alt=""></a>
                             </div>  
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -45,8 +45,8 @@
                                 <div class="main-menu ">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="{% url 'jobseeker_dashboard' %}">Dashboard</a></li>
-                                            <li><a href="{% url 'find_job_page' %}">Find Jobs</a></li>
+                                            <li><a href="{% url 'employee_dashboard' %}">Dashboard</a></li>
+                                            <li><a href="{% url 'job_list_page' %}">Jobs</a></li>
                                             <li><a href="#">Applied Jobs</a></li>
                                             <li><a href="{% url 'employees_contact_page' %}">Contact</a></li>
                                             <li><a href="{% url 'employees_about_page' %}">About</a></li>
@@ -56,7 +56,7 @@
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
                                     {% comment %} <a href="{% url 'user_selection_page' %}" class="btn head-btn1">Register</a> {% endcomment %}
-                                    <a href="{% url 'logout' %}" class="btn head-btn2">Logout</a>
+                                    <a href="{% url 'landing_page' %}" class="btn head-btn2">Logout</a>
                                 </div>
                             </div>
                         </div>

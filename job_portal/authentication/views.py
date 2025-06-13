@@ -26,7 +26,7 @@ class LoginView(View):
                 if custom_user.role == 'employer':
                     return redirect('employer_dashboard')
                 elif custom_user.role == 'job_seeker':
-                    return redirect('jobseeker_dashboard')
+                    return redirect('employee_dashboard')
             except CustomUser.DoesNotExist:
                 pass
             return redirect('home_page')

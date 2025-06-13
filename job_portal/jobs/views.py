@@ -15,16 +15,6 @@ class FindJobView(View):
 
         return render(request,'jobs/job_list.html',context=data)
     
-class JobDetailsView(View):
-
-    def get(request,*args,**kwargs):
-
-        uuid = kwargs.get('uuid')
-        job = get_object_or_404(Job, uuid=uuid)
-        data = {'job':job}
-
-        return render(request,'jobs/job_details.html',context=data)
-    
 class PostJobView(View):
 
     def get(self, request):
@@ -50,6 +40,7 @@ class PostJobView(View):
             print(f"{field}: {errors}")
 
         return render(request, 'jobs/post_job.html', {'form': form})
+    
 
 class JobListView(View):
 
@@ -60,3 +51,14 @@ class JobListView(View):
         data = {'jobs':jobs}
 
         return render(request,'jobs/job_list.html',context=data)
+
+class JobDetailsView(View):
+
+    def get(request,*args,**kwargs):
+
+        uuid = kwargs.get('uuid')
+        job = get_object_or_404(Job, uuid=uuid)
+        data = {'job':job}
+
+        return render(request,'jobs/job_details.html',context=data)
+    
