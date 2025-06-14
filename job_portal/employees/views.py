@@ -21,7 +21,6 @@ class EmployeeDashboardView(View):
             return redirect('login_page')
         
         return render(request, 'employees/employee_dashboard.html')
-    
 
 
 @method_decorator(login_required, name='dispatch')
@@ -47,6 +46,7 @@ class ApplyJobView(View):
 
         return render(request,'employees/apply_job.html')
     
+@method_decorator(login_required, name='dispatch')    
 class JobListView(View):
 
     def get(self, request,*args,**kwargs):
@@ -55,7 +55,8 @@ class JobListView(View):
         data = {'jobs':jobs}
 
         return render(request,'employees/job_list.html',context=data)
-
+    
+@method_decorator(login_required, name='dispatch') 
 class JobDetailsView(View):
 
     def get(request,*args,**kwargs):

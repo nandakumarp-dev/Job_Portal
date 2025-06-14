@@ -1,4 +1,4 @@
-{% extends "home/jobseeker_base.html" %}
+{% extends "employers/base.html" %}
 
 {% load static %}
 
@@ -99,7 +99,7 @@
                               <li>Application date : <span>{{job.application_deadline}}</span></li>
                           </ul>
                          <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
+                            <a href="{% url 'apply_job_page' %}" class="btn">Apply Now</a>
                          </div>
                        </div>
                         <div class="post-details4  mb-50">
